@@ -1,6 +1,5 @@
 from Tkinter import *
 import ttk
-import time
 
 
 class OBDCluster:
@@ -57,15 +56,6 @@ class OBDCluster:
 		self.titleLabel = ttk.Label(topmidframe, text="Fuel Economy", font="Arial 40", background="#d0d0d4")
 		self.titleLabel.pack(side=TOP)
 
-		self.message = ttk.Label(topmidframe, text="Most fuel efficient driving speed based on data from your vehicle", font="Arial 13 italic", background="#d0d0d4")
-		self.message.pack(side=BOTTOM)
-
-		self.bestSpeedLabel = ttk.Label(bottommidframe, text=efficient_speed, font="Arial 70", background="#d0d0d4")
-		self.bestSpeedLabel.pack(side=TOP)
-
-		self.bestSpeedUnitsLabel = ttk.Label(bottommidframe, text="MPH", font="Arial 15", background="#d0d0d4")
-		self.bestSpeedUnitsLabel.pack(side=BOTTOM)
-
 		def recordData():
 			print("button clicked..")
 
@@ -74,12 +64,12 @@ class OBDCluster:
 		rightframe.configure(background="#dee0e4")
 
 		toprightframe = Frame(rightframe)
-		toprightframe.pack(side=TOP, padx=.05*screen_width, pady=0.1*screen_height)
-		toprightframe.configure(background="#d0d0d4")
+		toprightframe.pack(side=TOP, padx=6, pady=15)
+		toprightframe.configure(background="#dee0e4")
 
 		bottomrightframe = Frame(rightframe)
 		bottomrightframe.pack(side=BOTTOM, padx=.05*screen_width, pady=.1*screen_height)
-		bottomrightframe.configure(background="#d0d0d4")
+		bottomrightframe.configure(background="#dee0e4")
 
 		# w = Canvas(toprightframe, width = screen_width, height=20, bg="#dee0e4")
 		# w.pack(expand=YES, fill=X)
@@ -87,14 +77,23 @@ class OBDCluster:
 		# root.update()
 		# w.create_line(10, 150, w.winfo_width()-10, 150, fill="#7a7a7a", width=3)
 
-		self.message = Message(toprightframe, text="Capture fuel consuption data at a constant speed to add improve the speed v. fuel consumption database")
-		self.message.pack(side=TOP)
+		self.message = Message(toprightframe, text="Capture fuel consuption data at a constant speed", font="Arial 13", background="#dee0e4", width="300")
+		self.message.pack(side=TOP, padx=5, pady=5)
 
 		style = ttk.Style()
 		style.configure("S.TButton", foreground="#6e6e6e", background="white")
 		
 		self.recordButton = ttk.Button(toprightframe, text="Cruise", style="S.TButton", command=recordData())
 		self.recordButton.pack(side=BOTTOM)
+
+		self.efficiencyLabel = ttk.Label(bottomrightframe, text="Most Fuel Efficient Speed", font="Arial 13", background="#dee0e4")
+		self.efficiencyLabel.pack(side=TOP)
+
+		self.bestSpeedLabel = ttk.Label(bottomrightframe, text=efficient_speed, font="Arial 60", background="#dee0e4")
+		self.bestSpeedLabel.pack(side=TOP)
+
+		self.bestSpeedUnitsLabel = ttk.Label(bottomrightframe, text="MPH", font="Arial 15", background="#dee0e4")
+		self.bestSpeedUnitsLabel.pack(side=BOTTOM)
 
 		# self.speedUnitsLabel = ttk.Label(topleftframe, text="MPH", font="Arial 15", background="#d0d0d4")
 		# self.speedUnitsLabel.pack(side=BOTTOM)
