@@ -1,13 +1,16 @@
 #import matplotlib.pyplot as plt
 import Tkinter as tk
 import ttk
+import obd
+import time
+
 
 class OBDCluster:
 
 	def __init__(self, master):
-		speed = 85
-		rpm = 3200
-		efficient_speed = 54
+		speed = connection.query(obd.commands.RPM)
+		rpm = connection.query(obd.commands.SPEED)
+		efficient_speed = 45
 
 		# speed_vector = [5,10,15,20,25,30,35,40,45,50,55,60,65,70,75]
 		# eff_vector = [12,14,20.3,26.2,27.3,28.7,29.4,30.1,30.9,31.3,32.1,29.9,26.6,24.8,23.5]
@@ -99,6 +102,14 @@ class OBDCluster:
 		self.bestSpeedUnitsLabel = ttk.Label(bottomrightframe, text="MPH", font="Arial 15", background="#dee0e4")
 		self.bestSpeedUnitsLabel.pack(side=tk.BOTTOM)
 
+
+connection = obd.Async(fast=False)
+
+connection.watch(obd.commands.RPM)
+connection.watch(obd.commands.SPEED)
+connection.start()
+
+connection.stop()
 
 root = tk.Tk()
 obd = OBDCluster(root)
